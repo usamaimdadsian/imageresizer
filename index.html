@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizer</title>
+</head>
+<body>
+    <div id="result">
+        <h1 class="h1">Pakistan Zindabad</h1>
+        <input type="file" id="image" @change="setFiles" multiple>
+        <label for="width">Width</label>
+        <input type="number" id="width" v-model="width">
+        <label for="height">Height</label>
+        <input type="number" id="height" v-model="height">
+        <input type="checkbox" id="preserve-ratio" v-model="pr">
+        <button @click="convertImage">Resize</button>
+        <br>
+        <button v-if="rimg.length > 0" @click="downloadResized">Download</button>
+        <table v-if="oimg">
+            <tr>
+                <td>
+                    <div class="subheading">Original Images</div>
+                    <div v-for="img in oimg">
+                        <img :src="img"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="subheading">Resized Image</div>
+                    <div v-for="img in rimg">
+                        <img :src="img"/>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- <script src="node_modules/requirejs/require.js"></script>
+        <script src="imageResizer.js"></script> -->
+        <!-- <script data-main="scripts/main" src="./node_modules/requirejs/require.js"></script> -->
+    <!-- <script src="./node_modules/vue/dist/vue.global.prod.js"></script> -->
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script src="./node_modules/jszip/dist/jszip.min.js"></script>
+    <script src="./node_modules/file-saver/dist/FileSaver.js"></script>
+    <script type="module" src="./js/imageResizer.js"></script>
+</body>
+</html>
